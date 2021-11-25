@@ -24,7 +24,7 @@
         </div>
       <div class="row">
         <div class="col-sm-2">
-          <button type="submit" class="btn btn-sm btn-primary btn-block"><i class="fa fa-save"></i> Save</button>
+          <button type="submit" class="btn btn-sm btn-primary btn-block"><i class="fa fa-save"></i> Update</button>
         </div>
         <div class="col-sm-10">
   
@@ -38,7 +38,7 @@
 <script>
 import axios from 'axios'
 export default {
-name:'Addnewela',
+name:'Editela',
 
 data(){
 return{

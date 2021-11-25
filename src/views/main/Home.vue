@@ -10,7 +10,7 @@
   <aside class="main-sidebar sidebar-dark-secondary elevation-4">
     <!-- Brand Logo -->
 
-    <div class="border" style="background:#2d3436"> 
+    <div class="" style="background:#2d3436"> 
       <a href="#" class="brand-link bg-dark">
           <span class="brand-text font-weight-light float-center">Error Log Architecture</span>
         </a>
@@ -28,9 +28,10 @@
                with font-awesome or any other icon font library -->
     
           <li class="nav-header">Activity</li>  
+          
           <li class="nav-item" v-for="menu in menuslink" :key="menu.id">
             <router-link :to="menu.menulink" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
+              <i class="nav-icon far fa-file"></i>
               <p>
                 {{ menu.menuname }}
               </p>
@@ -42,15 +43,19 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-
+  {{ test}}
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item">ELA List</li>
+          <li class="breadcrumb-item" v-for="breadCrumb in breadCrumbs" :key="breadCrumb.name">
+           
+            <router-link to :class="chckCurrent(breadCrumb.rt)">{{ breadCrumb.name }}</router-link>
+            
+          </li>
+          <!-- <li class="breadcrumb-item">{{ brdName }}</li> -->
         </ol>
        
       </div><!-- /.container-fluid -->
@@ -59,18 +64,19 @@
     <!-- Main content -->
     <section class="content" >
       <!-- style="height:70vh; overflow: scroll;" -->
-      <div class="container-fluid" >
+
+        <div class="card p-4 " style="height:70vh">
           <router-view :key="$router.fullPath"/>
-      </div>
+         </div> 
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
+  <footer class="main-footer"> 
+    <div class="float-right d-none d-sm-block small">
+        <strong>Copyright &copy; 2021-2022.</strong> All rights reserved.
     </div>
-    <strong>Copyright &copy; 2021-2022.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -82,12 +88,11 @@
 
 <!-- </div> -->
 </template>
-
 <script>
 import Topnav from '@/components/Topnav.vue'
 import Footer from '@/components/Footer.vue'
 import Showlogs from '@/views/main/forms/Showlogs.vue'
-
+import { ref  } from 'vue'
 import axios from 'axios'
 
 export default{
@@ -100,19 +105,44 @@ export default{
 
   data(){
     return{
-      menuslink:[]
+
+      test:'',
+      menuslink:[],
+      listlogs:[],
+      breadCrumbs:[{   
+            'name': 'Home',
+            'rt' : 'Home'
+          },
+          {
+            'name': 'Ela list',
+            'rt' : 'Showlogs'
+          }
+      ]
     }
   },
-  mounted(){
-    
-    axios.get('Menulink',{
+  methods:{
+    chckCurrent(crr){
+      if(this.$route.name == crr){
+        return 'text-secondary'
+      }
+      else
+      {
+         return 'text-primary'
+      }
+    }
+  }
+  ,
+  async mounted(){
+
+  await  axios.get('Menulink',{
       headers:{
         Authorization : 'Basic ' + localStorage.getItem('token')
       }
     }).then((response) => ( this.menuslink = response.data ))
+      .catch((error) => {this.$router.push("/")})
+
+      
   }
-
-
 };
 </script>
 

@@ -6,9 +6,6 @@ import store from './store'
 
 // import jQuery from 'jquery'
 // window.$ = window.jQuery = require("jquery");
-
-
-
 // import '@/assets/datatablesplugins/datatables-bs4/css/dataTables.bootstrap4.min.css'
 // import '@/assets/datatablesplugins/datatables-responsive/css/responsive.bootstrap4.min.css'
 // import '@/assets/datatablesplugins/datatables-buttons/css/buttons.bootstrap4.min.css'
@@ -35,10 +32,8 @@ import '@/assets/js/adminlte.min.js'
 // import '@/assets/datatablesplugins/datatables-buttons/js/buttons.html5.min.js'
 // import '@/assets/datatablesplugins/datatables-buttons/js/buttons.print.min.js'
 // import '@/assets/datatablesplugins/datatables-buttons/js/buttons.colVis.min.js'
-
 // import './plugins/element.js'
 // import installElementPlus from './plugins/element'
-
 // import ElementPlus from "element-plus";
 // import "element-plus/theme-chalk/index.css";
 

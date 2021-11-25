@@ -6,13 +6,16 @@
 <div class="login-box">
     <div class="card">
         <div class="card-body login-card-body">
-            <p v-if="errmsg" class="login-box-msg"><i class="fas fa-key mr-2"></i>Authentication failed.</p>
-            <p v-else class="login-box-msg"><i class="fas fa-key mr-2"></i>Sigin in now</p>
+            <p class="login-box-msg">
+
+            <i :class="icon"></i>
+            {{ errorMsg }}</p>
+
             <form @submit.prevent="loginSubmit">
-                <div class="input-group mb-3">
-                    <input v-model="username" type="text" class="form-control" placeholder="Username">
+                <div class="input-group mb-3 ">
+                    <input v-model="username" type="text" :class="'form-control '+ errcred"  placeholder="Username">
                         <div class="input-group-append">
-                            <div class="input-group-text">
+                            <div :class="'input-group-text ' + errcred">
                                 <span class="fas fa-envelope"> 
                                 </span>
                             </div>
@@ -20,9 +23,9 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input  v-model="password"  type="password" class="form-control" placeholder="email">
+                        <input  v-model="password"  type="password"  :class="'form-control '+ errcred" placeholder="Password">
                         <div class="input-group-append">
-                            <div class="input-group-text">
+                            <div :class="'input-group-text '+ errcred">
                                 <span class="fas fa-lock"> 
                                 </span>
                             </div>
@@ -50,16 +53,33 @@
 </template>
 
 <script>
+
 import axios from 'axios'
+
 export default{
 name:'Login',
+
+data(){
+    return{
+        'errorMsg' : 'Sign in now',
+        'icon':'fas fa-key mr-2',   
+        'errcred':''
+    }
+},
+
+mounted(){
+    const tokenAuth = localStorage.getItem('token')
+    if(tokenAuth != null ){
+        this.$router.push('/Showlogs')
+    }
+},
 methods: {
 async loginSubmit(){ 
     const username = this.username;
     const password = this.password;
-
     const encoded = window.btoa(username + ":" + password );       
-  console.log(encoded) 
+    this.errorMsg = "Authenticating please wait."
+    this.icon = 'fa fa-circle-o-notch fa-spin mr-2'
     await axios.get("LoginUser",{
         headers:{
                 Authorization: 'Basic ' + encoded,
@@ -75,7 +95,12 @@ async loginSubmit(){
         // this.$store.dispatch('storename', this.userinfo.userno)
         // console.log(response);
             }
-        ).catch(error => this.errmsg = "Invalid credential");
+        ).catch((error) => {
+            this.errorMsg=error.response.data
+            this.errcred = 'border-danger'
+            });
+
+        this.icon = 'fas fa-key mr-2'
     }   
  }
 }
