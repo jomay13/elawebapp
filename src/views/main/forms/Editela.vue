@@ -50,7 +50,7 @@ return{
 methods:{
   
   addLogs(){
-    axios.post('PostError',{
+    axios.put('PostError',{
       createdby : localStorage.getItem('userno'),
       type : this.type,
       details : this.details

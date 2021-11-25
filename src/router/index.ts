@@ -4,6 +4,7 @@ import Login from '@/views/Login.vue'
 import Home from '@/views/main/Home.vue'
 import Showlogs from '@/views/main/forms/Showlogs.vue'
 import Addnewela from '@/views/main/forms/Addnewela.vue'
+import Editela from '@/views/main/forms/Editela.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -32,6 +33,10 @@ const routes: Array<RouteRecordRaw> = [
         path: '/Addnew',
         name: 'Addnew',
         component: Addnewela
+      }, {
+        path: '/Editela',
+        name: 'Editela',
+        component: Editela
       },
     ]
 

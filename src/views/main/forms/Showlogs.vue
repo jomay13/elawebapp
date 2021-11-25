@@ -42,7 +42,7 @@
         <td>{{ listlog.username }}</td>
         <td>{{ moment(listlog.datecreated).format("ddd MMM DD, YYYY [at] HH:mm a") }}</td>
 
-        <td class="text-center"><button type="submit" class="btn btn-sm btn-dark rounded-pill small" style="font-size:.6rem"><i class="fa fa-edit"></i>Edit</button></td>
+        <td class="text-center"><router-link to="/Editela" class="btn btn-sm btn-dark rounded-pill small" style="font-size:.6rem"><i class="fa fa-edit"></i>Edit</router-link></td>
       </tr>
     </tbody>                
   </table>
