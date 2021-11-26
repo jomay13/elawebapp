@@ -5,6 +5,8 @@
 </div>
 <div class="login-box">
     <div class="card">
+          <div class="card-header strong text-center">Error Log Architecture</div>  
+      
         <div class="card-body login-card-body">
             <p class="login-box-msg">
 
@@ -70,7 +72,7 @@ data(){
 mounted(){
     const tokenAuth = localStorage.getItem('token')
     if(tokenAuth != null ){
-        this.$router.push('/Showlogs')
+        this.$router.push({name:'Showlogs'})
     }
 },
 methods: {
@@ -90,7 +92,7 @@ async loginSubmit(){
         localStorage.setItem('token',encoded);
         localStorage.setItem('username', this.userinfo.username);
         localStorage.setItem('userno', this.userinfo.userno);
-        this.$router.push('/Showlogs')
+        this.$router.push({name:'Showlogs'})
 
         // this.$store.dispatch('storename', this.userinfo.userno)
         // console.log(response);

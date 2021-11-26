@@ -22,7 +22,7 @@
 </div>
 
 <div class="container" v-else>
-  <table id="myTable" class="table table-striped table-bordered dt-responsive nowrap table-hover" style="width:100%;font-size:0.8rem"> 
+  <table id="myTable" class="table table-striped border dt-responsive nowrap table-hover" style="width:100%;font-size:0.8rem"> 
     <thead>
       <tr>
         <th>Log ID</th>
@@ -42,22 +42,21 @@
         <td>{{ listlog.username }}</td>
         <td>{{ moment(listlog.datecreated).format("ddd MMM DD, YYYY [at] HH:mm a") }}</td>
 
-        <td class="text-center"><router-link to="/Editela" class="btn btn-sm btn-dark rounded-pill small" style="font-size:.6rem"><i class="fa fa-edit"></i>Edit</router-link></td>
+        <td class="text-center">
+        <router-link :to="{ name : 'Editela'}"  class="btn btn-sm btn-dark rounded-pill small" style="font-size:.6rem">
+          <i class="fa fa-edit mr-1"></i>Edit
+        </router-link></td>
       </tr>
     </tbody>                
   </table>
 
   <div class="container border-top pt-2 mt-2">
-    <router-link to="/Addnew" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add new</router-link>
+    <router-link :to="{name:'Addnew'}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-plus"></i> Add new</router-link>
+    <router-link :to="{name:'Addnew'}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-file-excel"></i> Export</router-link>
+    <router-link :to="{name:'Addnew'}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-print"></i> Print</router-link>
   </div>
 </div>
-
-
-
-
-
 </template>
-
 <script>
 // import '@/assets/datatablesplugins/scripttable.js'
 import moment from 'moment'
@@ -88,7 +87,7 @@ export default {
             $('#myTable').DataTable({
               "bLengthChange": false,
               "bAutoWidth": false,
-              "scrollY":"230px"
+             
             });
           });
       },
@@ -115,4 +114,21 @@ export default {
     100% { background-color: #ddd; } 
   }
 
+
+tbody {
+    display: block;
+    height: 220px;
+    overflow: auto;
+}
+thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+thead {
+    width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
+}
+table {
+    width: 400px;
+}
 </style>

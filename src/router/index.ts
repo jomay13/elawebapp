@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Login from '@/views/Login.vue'
 
 import Home from '@/views/main/Home.vue'
+import About from '@/views/main/About.vue'
 import Showlogs from '@/views/main/forms/Showlogs.vue'
 import Addnewela from '@/views/main/forms/Addnewela.vue'
 import Editela from '@/views/main/forms/Editela.vue'
@@ -10,37 +11,44 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Login',
-    component: Login
+    component: Login,
+    props:true
   },
   // {
   //   path: '/Showlogs',
   //   name: '/Showlogs',
   //   component: Showlogs
   // },
- 
-
   {
     path: '/home',
-    name: 'Home',
+    name: 'home',
     props:true,
     component: Home,
     children:[
       {
-        path: '/Showlogs',
+        path: '/home/Showlogs',
         name: 'Showlogs',
-        component: Showlogs
+        component: Showlogs,
+        props:true
       }, {
-        path: '/Addnew',
+        path: '/home/Showlogs/Addnew',
         name: 'Addnew',
-        component: Addnewela
-      }, {
-        path: '/Editela',
+        component: Addnewela,
+        props:true
+      },{
+        path: '/home/Showlogs/Editela',
         name: 'Editela',
-        component: Editela
+        component: Editela,
+        props:true
+      },{
+        path: '/home/About',
+        name: 'About',
+        component: About,
+        props:true
       },
     ]
-
   }
+  , 
   // {
   //   path: '/about',
   //   name: 'About',
