@@ -16,7 +16,7 @@
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown" >
+      <li class="nav-item dropdown" style="text-shadow: 0 0 1px black;">
         <a class="nav-link text-light" data-toggle="dropdown" href="#">
           <i class="far fa-user mr-2"></i>{{ username }}
         </a>

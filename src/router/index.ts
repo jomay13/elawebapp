@@ -3,16 +3,17 @@ import Login from '@/views/Login.vue'
 
 import Home from '@/views/main/Home.vue'
 import About from '@/views/main/About.vue'
-import Showlogs from '@/views/main/forms/Showlogs.vue'
-import Addnewela from '@/views/main/forms/Addnewela.vue'
-import Editela from '@/views/main/forms/Editela.vue'
+import Ela from '@/views/main/forms/Ela.vue'
+import Add from '@/views/main/forms/Add.vue'
+import Edit from '@/views/main/forms/Edit.vue'
 
 const routes: Array<RouteRecordRaw> = [
+
   {
     path: '/',
     name: 'Login',
     component: Login,
-    props:true
+    props:true,
   },
   // {
   //   path: '/Showlogs',
@@ -22,30 +23,27 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/home',
     name: 'home',
-    props:true,
     component: Home,
     children:[
       {
-        path: '/home/Showlogs',
-        name: 'Showlogs',
-        component: Showlogs,
+        path: '/Home/Ela',
+        name: 'Ela',
+        component: Ela,
         props:true
-      }, {
-        path: '/home/Showlogs/Addnew',
-        name: 'Addnew',
-        component: Addnewela,
-        props:true
-      },{
-        path: '/home/Showlogs/Editela',
-        name: 'Editela',
-        component: Editela,
-        props:true
-      },{
-        path: '/home/About',
-        name: 'About',
-        component: About,
+      }, 
+      {
+        path: '/Home/Ela/Add',
+        name: 'Add',
+        component: Add,
         props:true
       },
+      {
+        path: '/Home/Ela/Edit',
+        name: 'Edit',
+        component: Edit,
+        props:true
+      },
+    
     ]
   }
   , 

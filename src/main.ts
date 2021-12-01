@@ -13,13 +13,18 @@ import store from './store'
 import '@/assets/fontawesome-free/css/all.min.css'
 import '@/assets/overlayScrollbars/css/OverlayScrollbars.min.css'
 import '@/assets/css/adminlte.css'
+import '@/assets/bs5datatables.css'
+import '@/assets/responsivebs.css'
+// import '@/assets/fontawsome.css'
+
 
 import '@/assets/jquery/jquery.min.js'
 import '@/assets/bootstrap/js/bootstrap.bundle.min.js'
 import '@/assets/overlayScrollbars/js/jquery.overlayScrollbars.min.js'
 import '@/assets/js/adminlte.min.js'
 
-
+import '@/assets/dtrs.js'
+import '@/assets/bs5datatables.js'
 // import '@/assets/datatablesplugins/datatables/jquery.dataTables.min.js'
 // import '@/assets/datatablesplugins/datatables-bs4/js/dataTables.bootstrap4.min.js'
 //import '@/assets/datatablesplugins/datatables-responsive/js/dataTables.responsive.min.js'

@@ -1,28 +1,15 @@
 <template>
-
-<!-- <div class="container">
-  <span class="small">Search by</span>
-<div class="input-group mb-3" style="width:20rem">
-
-  <div class="input-group-prepend">
-    <select name="" id="" class="form-control">
-      <option value="">Details</option>
-      <option value="">Type</option>
-    </select>
-  </div>
-
-  <input type="text" class="form-control">
-  </div>
-</div> -->
-
 <div class="container" v-if="loaderDiv">
   <div class="divLoading">
- 
   </div>
 </div>
 
 <div class="container" v-else>
-  <table id="myTable" class="table table-striped border dt-responsive nowrap table-hover" style="width:100%;font-size:0.8rem"> 
+  <div class="container border-bottom mb-2 text-right font-weight-bold">ELA List</div>
+   <!-- <router-link :to="{name:'Editela', params:{id:'1'}}">sada</router-link> -->
+  <table id="myTable" 
+         class="table table-striped dt-responsive nowrap table-hover content-table" 
+         style="width:100%;font-size:0.8rem;"> 
     <thead>
       <tr>
         <th>Log ID</th>
@@ -34,7 +21,9 @@
         <!-- th>Action</th> -->
       </tr>
     </thead>
+  
     <tbody>
+     
       <tr v-for="listlog in listlogs" :key="listlog.id">
         <td>{{ listlog.id }}</td>
         <td>{{ listlog.details }}</td>
@@ -43,26 +32,32 @@
         <td>{{ moment(listlog.datecreated).format("ddd MMM DD, YYYY [at] HH:mm a") }}</td>
 
         <td class="text-center">
-        <router-link :to="{ name : 'Editela'}"  class="btn btn-sm btn-dark rounded-pill small" style="font-size:.6rem">
+        <router-link  :to="{ name : 'Edit', query:{id: listlog.id ,type:listlog.type, details:listlog.details}}"  
+                      class="btn btn-sm btn-primary rounded-pill small shadow-sm" 
+                      style="font-size:.6rem">
           <i class="fa fa-edit mr-1"></i>Edit
-        </router-link></td>
+        </router-link>
+        </td>
       </tr>
-    </tbody>                
+    
+    </tbody> 
+                  
   </table>
-
+<!-- {name:'Addnew',params: {status : 'sample'}} -->
   <div class="container border-top pt-2 mt-2">
-    <router-link :to="{name:'Addnew'}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-plus"></i> Add new</router-link>
-    <router-link :to="{name:'Addnew'}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-file-excel"></i> Export</router-link>
-    <router-link :to="{name:'Addnew'}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-print"></i> Print</router-link>
+
+    <router-link :to="{name:'Add'}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-plus"></i> Add new</router-link>
+    <!-- <router-link :to="{name:'Addnew'}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-file-excel"></i> Export</router-link>
+    <router-link :to="{name:'Addnew'}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-print"></i> Print</router-link> -->
   </div>
 </div>
 </template>
 <script>
-// import '@/assets/datatablesplugins/scripttable.js'
 import moment from 'moment'
 import axios from 'axios'
+
 export default {
-  name:'Showlogs',
+  name:'Ela',
     created(){
     this.moment = moment; 
     },
@@ -87,7 +82,7 @@ export default {
             $('#myTable').DataTable({
               "bLengthChange": false,
               "bAutoWidth": false,
-             
+              "pageLength":5
             });
           });
       },
@@ -115,20 +110,10 @@ export default {
   }
 
 
-tbody {
-    display: block;
-    height: 220px;
-    overflow: auto;
-}
-thead, tbody tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-}
-thead {
-    width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
-}
-table {
-    width: 400px;
+ .content-table {
+  border:0px;
+  border-radius: 5px 5px 0 0; 
+  overflow: hidden;
+  box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.15);
 }
 </style>

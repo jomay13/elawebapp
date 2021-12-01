@@ -9,13 +9,13 @@
       
         <div class="card-body login-card-body">
             <p class="login-box-msg">
-
+                
             <i :class="icon"></i>
             {{ errorMsg }}</p>
 
             <form @submit.prevent="loginSubmit">
                 <div class="input-group mb-3 ">
-                    <input v-model="username" type="text" :class="'form-control '+ errcred"  placeholder="Username">
+                    <input v-model="username" name="username" type="text" :class="'form-control '+ errcred"  placeholder="Username">
                         <div class="input-group-append">
                             <div :class="'input-group-text ' + errcred">
                                 <span class="fas fa-envelope"> 
@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input  v-model="password"  type="password"  :class="'form-control '+ errcred" placeholder="Password">
+                        <input  v-model="password" name="password"  type="password"  :class="'form-control '+ errcred" placeholder="Password" autocomplete="on">
                         <div class="input-group-append">
                             <div :class="'input-group-text '+ errcred">
                                 <span class="fas fa-lock"> 
@@ -63,6 +63,8 @@ name:'Login',
 
 data(){
     return{
+        'username':'',
+        'password':'',
         'errorMsg' : 'Sign in now',
         'icon':'fas fa-key mr-2',   
         'errcred':''
@@ -72,7 +74,7 @@ data(){
 mounted(){
     const tokenAuth = localStorage.getItem('token')
     if(tokenAuth != null ){
-        this.$router.push({name:'Showlogs'})
+        this.$router.push({name:'Ela'})
     }
 },
 methods: {
@@ -92,10 +94,9 @@ async loginSubmit(){
         localStorage.setItem('token',encoded);
         localStorage.setItem('username', this.userinfo.username);
         localStorage.setItem('userno', this.userinfo.userno);
-        this.$router.push({name:'Showlogs'})
+        this.$router.push({name:'Ela'})
 
-        // this.$store.dispatch('storename', this.userinfo.userno)
-        // console.log(response);
+    
             }
         ).catch((error) => {
             this.errorMsg=error.response.data
